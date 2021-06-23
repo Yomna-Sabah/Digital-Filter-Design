@@ -150,7 +150,10 @@ zeros_ADDfilter_y = []
 
 def add_conj():
     global conj_flag
-    conj_flag = True
+    if conj_flag:
+        conj_flag = False
+    else:
+        conj_flag = True
 
 
 def remove_all():
@@ -212,21 +215,23 @@ y_conj_zero = []
 
 
 def callback(event):
-    global y_conj_pole
-    y_conj_pole = []
-    
-    pole_source.data.update([('x_conj', pole_source.data.get('x'))])
-    
-    for i in pole_source.data.get('y'):
-        y_conj_pole.append(-i)
-    pole_source.data.update([('y_conj', y_conj_pole)])
+    global conj_flag
+    if conj_flag:
+        global y_conj_pole
+        y_conj_pole = []
+        
+        pole_source.data.update([('x_conj', pole_source.data.get('x'))])
+        
+        for i in pole_source.data.get('y'):
+            y_conj_pole.append(-i)
+        pole_source.data.update([('y_conj', y_conj_pole)])
 
-    global y_conj_zero
-    y_conj_zero = []
-    zero_source.data.update([('x_conj', zero_source.data.get('x'))])
-    for i in zero_source.data.get('y'):
-        y_conj_zero.append(-i)
-    zero_source.data.update([('y_conj', y_conj_zero)])
+        global y_conj_zero
+        y_conj_zero = []
+        zero_source.data.update([('x_conj', zero_source.data.get('x'))])
+        for i in zero_source.data.get('y'):
+            y_conj_zero.append(-i)
+        zero_source.data.update([('y_conj', y_conj_zero)])
 
 
 y_conj_pole_filter = []
