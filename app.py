@@ -383,7 +383,7 @@ def SelectFilter(attr, old, new):
         zero_source.data.update([('y', zero_source.data.get('y')+zeros_ADDfilter_y)])
 
         draw_tool = PointDrawTool(renderers=[render_pole, render_pole_conj])
-    elif menu.value == 'no selection': 
+    elif menu.value == 'no selection yet': 
         remove_all()
         
 menu.on_change('value', SelectFilter)
